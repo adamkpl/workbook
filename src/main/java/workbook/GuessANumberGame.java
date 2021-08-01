@@ -44,7 +44,7 @@ public class GuessANumberGame {
 
             System.out.println("Play again? [Y/N]");
             Scanner quit = new Scanner(System.in);
-            String quitAnswer = quit.nextLine().toLowerCase();
+            String quitAnswer = quit.nextLine().toLowerCase().substring(0, 1);
 
             //todo assert if input is Y/N - if not, repeat the question
             finish = !quitAnswer.equals("y");
