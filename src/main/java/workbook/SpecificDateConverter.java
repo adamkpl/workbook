@@ -48,7 +48,8 @@ public class SpecificDateConverter {
 
         date = date.replaceAll("[.]", "");
 
-        date = stripFirstZero(date);
+        //date = stripFirstZero(date);
+        date = stripLeadingZeros(date);
 
         String hh;
         String mm;
@@ -81,10 +82,17 @@ public class SpecificDateConverter {
         return date;
     }
 
+    private static String stripLeadingZeros(String DDMMHH) {
+        return DDMMHH.replaceAll("\\D|^0+", "");
+    }
+
     private static String stripFirstZero(String DDMMHH) {
         System.out.print("stripZero DDMMHH " + DDMMHH + " "); //todo remove this
-        for (int i = 0; i < 6; i++) {
-            if (stripFirstDot(DDMMHH.substring(0,1)).equals("0")) {
+
+        int max = DDMMHH.length();
+
+        for (int i = 0; i < max; i++) {
+            if (DDMMHH.charAt(0) == '0') {
                 DDMMHH = DDMMHH.replaceFirst("[0]", "");
             } else {
                 System.out.print("");
