@@ -1,7 +1,5 @@
 package workbook;
 
-import org.junit.Assert;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,34 +9,24 @@ public class SpecificDateConverter {
     public static void main(String[] args) {
 
         ArrayList<String> hours = new ArrayList();
-        hours.add("11.11.11");
-        hours.add("01.11.11");
-        hours.add("00.11.11");
-        hours.add("00.01.11");
-        hours.add("00.00.11");
-        hours.add("00.00.01");
-        hours.add("00.00.00");
         hours.add("10.00.00");
-        hours.add("11.00.00");
+        hours.add("01.00.00");
         hours.add("00.10.00");
+        hours.add("00.01.00");
         hours.add("00.00.10");
+        hours.add("00.00.1");
 
         ArrayList<String> expectedHours = new ArrayList();
-        expectedHours.add("11.11.11");
-        expectedHours.add("1.11.11");
-        expectedHours.add("11.11");
-        expectedHours.add("1.11");
-        expectedHours.add("11");
-        expectedHours.add("1");
-        expectedHours.add("");
         expectedHours.add("10.00.00");
-        expectedHours.add("11.00.00");
+        expectedHours.add("1.00.00");
         expectedHours.add("10.00");
+        expectedHours.add("1.00");
         expectedHours.add("10");
+        expectedHours.add("1");
 
         // Assert
         for (int i = 0; i < hours.size(); i++) {
-            System.out.println("Input: " + hours.get(i) + ", expected: " + stripDate(hours.get(i)));
+            System.out.println("Input: " + hours.get(i) + ", expected: '" + expectedHours.get(i) + "', actual: " + stripDate(hours.get(i)));
             //Assert.assertEquals(expectedHours.get(i), stripDate(hours.get(i)));  //todo uncomment
         }
 
@@ -56,41 +44,55 @@ public class SpecificDateConverter {
             System.out.println("Invalid input. Date not parsable.");
         }
 
-        // Split
+        date = date.replaceAll("[.]", "");
 
-        // 1. HH
-        String hh = date.substring(0, 2);
-        hh = stripZero(hh);
+        date = stripFirstZero(date);
 
-        // 2. MM
-        String mm = date.substring(3, 5);
-        mm = stripZero(mm);
+        String hh;
+        String mm;
+        String ss;
 
-        // 3. SS
-        String ss = date.substring(6, 8);
-        ss = stripZero(ss);
+        if (date.length()==6) {
+            // if 6 chars then hh.mm.ss
 
-        // Concat final
-        String final_date = hh + "." + mm + "." + ss;
+        } else if (date.length()==5) {
+            // if 5 chars then h.mm.ss
 
-        // if . is the first char then remove it.
-        final_date = stripFirstDot(final_date);
+        } else if (date.length()==4) {
+            // if 4 chars then mm.ss
 
-        return final_date;
-    }
+        } else if (date.length()==3) {
+            // if 3 chars then m.ss
 
-    private static String stripZero(String ii) {
-        if (ii.startsWith("00")) {
-            ii = ii.replaceAll("[0]", "");
-        } else if (ii.charAt(0) == '0' && ii.charAt(1) != '0') {
-            // replace first 0; leave index 1 as is
-            ii = ii.replaceFirst("[0]", "");
+        } else if (date.length()==2) {
+            // if 2 chars then ss
+
+        } else if (date.length()==1) {
+            // if 1 char then s
+
+        } else if (date.length()==0) {
+            // if 0 char then ''
         }
 
-        return ii;
+
+        return date;
+    }
+
+    private static String stripFirstZero(String DDMMHH) {
+        System.out.print("stripZero DDMMHH " + DDMMHH + " ");
+        for (int i = 0; i < 6; i++) {
+            if (DDMMHH.charAt(0) == '0') {
+                DDMMHH = DDMMHH.replaceFirst("[0]", "");
+            } else {
+                System.out.print("");
+            }
+        }
+
+        return DDMMHH;
     }
 
     private static String stripFirstDot(String final_date) {
+
         for (int i = 0; i < 2; i++) {
             if (final_date.startsWith(".")) {
                 final_date = final_date.replaceFirst(".", "");
