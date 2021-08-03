@@ -1,5 +1,7 @@
 package workbook;
 
+import org.junit.Assert;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class SpecificDateConverter {
         hours.add("00.10.00");
         hours.add("00.01.00");
         hours.add("00.00.10");
-        hours.add("00.00.1");
+        hours.add("00.00.01");
 
         ArrayList<String> expectedHours = new ArrayList();
         expectedHours.add("10.00.00");
@@ -52,6 +54,7 @@ public class SpecificDateConverter {
         String mm;
         String ss;
 
+        //todo must be better solution to this
         if (date.length()==6) {
             // if 6 chars then hh.mm.ss
 
@@ -79,9 +82,9 @@ public class SpecificDateConverter {
     }
 
     private static String stripFirstZero(String DDMMHH) {
-        System.out.print("stripZero DDMMHH " + DDMMHH + " ");
+        System.out.print("stripZero DDMMHH " + DDMMHH + " "); //todo remove this
         for (int i = 0; i < 6; i++) {
-            if (DDMMHH.charAt(0) == '0') {
+            if (stripFirstDot(DDMMHH.substring(0,1)).equals("0")) {
                 DDMMHH = DDMMHH.replaceFirst("[0]", "");
             } else {
                 System.out.print("");
