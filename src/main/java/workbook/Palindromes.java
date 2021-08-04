@@ -30,10 +30,10 @@ public class Palindromes {
     private static void checkIfPalindromeWithWhileLoop(String palindromeString) {
         int left = 0;
         int right = palindromeString.length() - 1;
-        String palindromeStringLowerCase = palindromeString.toLowerCase();
+        palindromeString = palindromeString.toLowerCase();
 
         while (left < right)
-            if (palindromeStringLowerCase.charAt(left++) != palindromeStringLowerCase.charAt(right--)) {
+            if (palindromeString.charAt(left++) != palindromeString.charAt(right--)) {
                 System.out.println(palindromeString + " is NOT a palindrome.");
             }
 
@@ -41,19 +41,19 @@ public class Palindromes {
     }
 
     private static void checkIfPalindromeWithForLoop(String palindromeString) {
-        String palindromeStringLowerCase = palindromeString.toLowerCase();
+        palindromeString = palindromeString.toLowerCase();
 
-        for (int i = 0; i < palindromeStringLowerCase.length() / 2; i++)
-            if(palindromeStringLowerCase.charAt(i) != palindromeStringLowerCase.charAt(palindromeString.length() - 1 - i)) {
+        for (int i = 0; i < palindromeString.length() / 2; i++)
+            if(palindromeString.charAt(i) != palindromeString.charAt(palindromeString.length() - 1 - i)) {
                 System.out.println(palindromeString + " is NOT a palindrome.");
             }
         System.out.println(palindromeString + " is a palindrome.");
     }
 
     private static void checkIfPalindromeWithReverseString(String palindromeString) {
-        String palindromeStringLowerCase = palindromeString.toLowerCase();
+        palindromeString = palindromeString.toLowerCase();
 
-        if (palindromeStringLowerCase.equals(new StringBuilder(palindromeStringLowerCase.toLowerCase()).reverse().toString())) {
+        if (palindromeString.equals(new StringBuilder(palindromeString).reverse().toString())) {
             System.out.println(palindromeString + " is a palindrome.");
         } else {
             System.out.println(palindromeString + " is NOT a palindrome.");
