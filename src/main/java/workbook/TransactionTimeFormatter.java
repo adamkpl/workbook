@@ -28,13 +28,9 @@ public class TransactionTimeFormatter {
         // Assert
         for (int i = 0; i < hours.size(); i++) {
             System.out.println("Input: " + hours.get(i) + ", expected: '" + expectedHours.get(i)
-                    + "', actual: '" + stripHourOfTransactionFromLeadingZeroesAndDots(hours.get(i)) + "'");
-            Assert.assertEquals(expectedHours.get(i), stripHourOfTransactionFromLeadingZeroesAndDots(hours.get(i)));
+                    + "', actual: '" + replaceLeadingZeroesAndDots(hours.get(i)) + "'");
+            Assert.assertEquals(expectedHours.get(i), replaceLeadingZeroesAndDots(hours.get(i)));
         }
-    }
-
-    private static String stripHourOfTransactionFromLeadingZeroesAndDots(String hour) {
-        return replaceLeadingZeroesAndDots(hour);
     }
 
     private static String replaceFirstZero(String DDMMHH) {
