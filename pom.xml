@@ -208,5 +208,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>${com.fasterxml.jackson}</version>
         </dependency>
+<!--        https://www.baeldung.com/junit-params-->
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>1.1.1</version>
+<!--            <scope>test</scope>-->
+        </dependency>
     </dependencies>
 </project>
