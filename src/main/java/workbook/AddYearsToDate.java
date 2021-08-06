@@ -1,12 +1,14 @@
 package workbook;
 
+import org.junit.Assert;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-public class AddEighteenYearsToDate {
+public class AddYearsToDate {
     public static void main(String[] args) throws ParseException {
 
         /*
@@ -29,6 +31,8 @@ public class AddEighteenYearsToDate {
 
         String newDateConverted = convertNewDate(newDate, "dd.MM.yyyy");
         System.out.println("New date as String (dd.MM.yyyy): " + newDateConverted);
+
+        Assert.assertEquals("01.08.2004", newDateConverted);
 
     }
 
