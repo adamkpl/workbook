@@ -19,7 +19,11 @@ public class DateOperations {
             .format(Calendar.getInstance().getTime())
             .substring(0, 8); // dd/MM/yy
 
-    public final static int getCurrentYearsAmountSinceCompanyEstablishmentAndToday() throws ParseException {
+    public static void main(String[] args) throws ParseException {
+        System.out.println(getCurrentYearsAmountSinceCompanyEstablishmentAndToday());
+    }
+
+    public static int getCurrentYearsAmountSinceCompanyEstablishmentAndToday() throws ParseException {
         return getYearsDifference(parseDate(DATE_OF_ESTABLISHMENT, DD_MM_YYYY), parseDate(TODAY, DD_MM_YY));
     }
 
